@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import ActiveLink from "@/components/active-link";
+import { cn } from "@/lib/utils";
+import { ArrowUpRight } from "lucide-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +19,34 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn(inter.className, "container")}>
+        <header className="flex gap-4 h-16 border-b px-4 mb-6">
+          <ActiveLink
+            target="_blank"
+            className="text-muted-foreground"
+            activeClassName="text-foreground font-bold"
+            href="/1"
+          >
+            リンク1
+            <ArrowUpRight size={16} className="inline-block pl-1" />
+          </ActiveLink>
+          <ActiveLink
+            className="text-muted-foreground"
+            activeClassName="text-foreground font-bold"
+            href="/2"
+          >
+            リンク2
+          </ActiveLink>
+          <ActiveLink
+            className="text-muted-foreground"
+            activeClassName="text-foreground font-bold"
+            href="/3"
+          >
+            リンク3
+          </ActiveLink>
+        </header>
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
